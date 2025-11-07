@@ -1,14 +1,15 @@
 
 import { player, initPlayer, drawPlayer } from "./player.js";
-import { spawnEnemy, enemies,updateEnemies,drawEnemies } from "./enemies.js";
+import { spawnEnemy, enemies, updateEnemies, drawEnemies } from "./enemies.js";
 import { handleCollisions } from "./collision.js";
 
 const canvas = document.getElementById("gameCanvas");
 const ctx = canvas.getContext("2d");
 
+
 initPlayer(canvas);
 
-const bullets = [];
+export const bullets = [];
 const BULLET_SPEED = -5;
 
 function tryShoot() {
@@ -21,6 +22,12 @@ function tryShoot() {
     })
 }
 
+function updateScore(){
+const scoreBoard=document.getElementById("scoreBoard");
+scoreBoard.innerText=`Score: ${player.score}`;
+const lifeBoard=document.getElementById("lifeBoard");
+lifeBoard.innerText=`Life: ${player.life}`;
+}
 
 window.addEventListener("keydown", (e) => {
     if (e.key === "ArrowLeft") {
@@ -44,9 +51,10 @@ function update() {
             bullets.splice(i, 1);
         }
     }
-    spawnEnemy(canvas);
+    spawnEnemy(canvas);    
     updateEnemies(canvas);
     handleCollisions();
+    updateScore();
 }
 
 function draw() {
@@ -61,7 +69,7 @@ function draw() {
         ctx.fillRect(bullet.x, bullet.y, bullet.width, bullet.height);
     }
 
-drawEnemies(ctx);
+    drawEnemies(ctx);
 }
 
 function gameLoop() {

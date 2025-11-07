@@ -1,3 +1,6 @@
+const enemyImage=new Image();
+enemyImage.src="player.png";
+
 export const player={
   x:0,
   y:0,
@@ -5,6 +8,7 @@ export const player={
   height:30,
   color:"blue",
   life:3,
+  score:0,
 };
 
 export function initPlayer(canvas){

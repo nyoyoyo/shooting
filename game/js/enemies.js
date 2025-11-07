@@ -1,6 +1,7 @@
-
 export const enemies = [];
-const SIZE = 26;
+const SIZE = 70;
+const enemyImage=new Image();
+enemyImage.src="https://tfi.gamepedia.jp/image/w=1200,h=630,fit=pad,f=webp/media.gamepedia.jp/gamepedia/wp-content/uploads/sites/9/2019/02/05184234/db9b394114683824f13743de113dffe6.png";
 
 function pushEnemies(canvas) {
   const w = SIZE;
@@ -31,6 +32,6 @@ export function updateEnemies(canvas) {
 export function drawEnemies(ctx) {
   ctx.fillStyle = "crimson";
   for (const e of enemies) {
-    ctx.fillRect(e.x, e.y, e.width, e.height);
+    ctx.drawImage(enemyImage,e.x, e.y, e.width, e.height);
   }
 }
